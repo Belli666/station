@@ -1,0 +1,25 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(29, 29, 29);
+    height: 50vh;
+    border: solid 0.8vh rgb(0, 0, 0);
+    width: 30%;
+    position: relative;
+    position: fixed;
+    margin: 10vh 8vh;
+}
+.data{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 105%;
+}
+.divBtn{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    width: 100%;
+}

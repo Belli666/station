@@ -1,0 +1,62 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(29, 29, 29);
+    height: 50vh;
+    border: solid 0.8vh rgb(0, 0, 0);
+    width: 30%;
+    position: relative;
+    position: fixed;
+    margin: 10vh 8vh;
+}
+.data{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 105%;
+}
+.divBtn{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    width: 100%;
+}
+.usersList{
+  max-height: calc(100vh - 7%);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 5px;
+  position: absolute;
+  left: 100%;
+  background-color: rgb(29, 29, 29);
+  border: solid 0.8vh rgb(0, 0, 0);
+}
+.usersList::-webkit-scrollbar {
+  width: 6px;
+}
+.usersList::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.3);
+  border-radius: 3px;
+}.selected{
+    border-bottom: 5px solid black;
+    border-top: 5px solid black;
+}.userItem:hover{
+    background-color: rgb(147, 147, 147);
+}
+.otherUsers{
+    display: flex;
+    width: 100%;
+    margin: 2%;
+}.otherUsers img{
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 50%;
+}.otherUsers p{
+        display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}

@@ -1,0 +1,32 @@
+table{
+    border-collapse: collapse;
+    padding: 0;
+    width: 100%;
+}
+td{
+    text-wrap: nowrap;
+    border: 1px solid black;
+    text-align: center;
+    vertical-align: middle; 
+}th{
+    font-size: 13px;
+    border: 1px solid black;
+    text-align: center;
+    vertical-align: middle; 
+}
+.date{
+    width: 80px;
+}
+.header{
+    display: flex;
+    justify-content: space-around;
+    font-size: 13px;
+}
+.boldBorder td {
+  border-bottom: 3px solid black;
+  padding: 0;
+}
+.main{
+    width: 794px;
+    padding: 0;
+}
