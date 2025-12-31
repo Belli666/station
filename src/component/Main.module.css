@@ -14,9 +14,6 @@ td{
     text-align: center;
     vertical-align: middle; 
 }
-.date{
-    width: 80px;
-}
 .header{
     display: flex;
     justify-content: space-around;

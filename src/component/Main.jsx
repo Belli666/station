@@ -116,8 +116,8 @@ let Main = (props) => {
               <option value="15">15:00</option>
               <option value="18">18:00</option>
               <option value="21">21:00</option>
-            </select> 
-            <Input className={classes.date} value={props.date} onChange={(e) => props.dateChange(e.target.value)} type="date"/>-жылдагы фактикалык аба ырай.
+            </select>,
+            <Input value={props.date} onChange={(e) => props.dateChange(e.target.value)} type="date"/>-жылдагы фактикалык аба ырай.
           </b>
           <b>Кабыл алды:<Input type='text'/></b>
         </header>
@@ -135,7 +135,7 @@ let Main = (props) => {
                 <th>Жаан</th>
                 <th>Көрүү алыст</th>
                 <th>Учур аба ырай</th>
-                <th>Балл</th>
+                <th>Булут-тулук </th>
                 <th>Ылды чеги</th>
                 <th>Булут түрү</th>
               </tr>
@@ -225,7 +225,7 @@ let Main = (props) => {
                           <td>{values.total_precipitation_or_total_water_equivalent?Number((values.total_precipitation_or_total_water_equivalent?.value).toFixed(1))+' мм':null}</td>
                           <td>{values.horizontal_visibility?values.horizontal_visibility?.value/1000+' км':null}</td>
                           <td>{shortenWeather(values.present_weather?.description)}</td>
-                          <td>{values.cloud_amount?.description.split('OKTA')[0]}</td>
+                          <td>{values.cloud_cover_total?values.cloud_cover_total.value+"%":null}</td>
                           <td>{values.height_of_base_of_cloud?values.height_of_base_of_cloud?.value+' м':null}</td>
                           <td>{/*(values.cloud_type?.description)*/}</td>
                         </tr>

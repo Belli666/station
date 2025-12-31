@@ -55,5 +55,23 @@ div{
   button {
     visibility: hidden;
     position: absolute;
-  }
+  }input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+} select {
+  -webkit-appearance: none; /* Chrome, Safari, Edge */
+  -moz-appearance: none;    /* Firefox */
+  appearance: none;          /* стандарт */
+  background: transparent;   /* убираем фон стрелки */
+  padding-right: 0;
+  border: none;
+  width: 31px;
+}input{
+  border: none;
+  margin-top: 1px;
+  margin-left: 5px;
+  margin-right: -25px;
 }
+}
+
+
