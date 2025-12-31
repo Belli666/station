@@ -39,43 +39,43 @@ let Main = (props) => {
     return acc;
   }, {});
 
-function shortenCloudType(longDesc) {
-  if (!longDesc) return '';
-  const desc = longDesc.toLowerCase().split(';')[0];
-  const types = [
-    { key: /no.*clouds?/, short: "-" },
-    { key: /\bcirrus\b/, short: "Ci" },
-    { key: /\bcirrocumulus\b/, short: "Cc" },
-    { key: /\bcirrostratus\b/, short: "Cs" },
-    { key: /\baltocumulus\b/, short: "Ac" },
-    { key: /\baltostratus\b/, short: "As" },
-    { key: /\bnimbostratus\b/, short: "Ns" },
-    { key: /\bstratocumulus\b/, short: "Sc" },
-    { key: /\bstratus\b/, short: "St" },
-    { key: /\bcumulus\b/, short: "Cu" },
-    { key: /\bcumulonimbus\b/, short: "Cb" },
-    { key: /,/, short: ", " },
-    { key: /or/, short: "же " },
-    { key: /and/, short: "жана " },
-  ];
+// function shortenCloudType(longDesc) {
+//   if (!longDesc) return '';
+//   const desc = longDesc.toLowerCase().split(';')[0];
+//   const types = [
+//     { key: /no.*clouds?/, short: "-" },
+//     { key: /\bcirrus\b/, short: "Ci" },
+//     { key: /\bcirrocumulus\b/, short: "Cc" },
+//     { key: /\bcirrostratus\b/, short: "Cs" },
+//     { key: /\baltocumulus\b/, short: "Ac" },
+//     { key: /\baltostratus\b/, short: "As" },
+//     { key: /\bnimbostratus\b/, short: "Ns" },
+//     { key: /\bstratocumulus\b/, short: "Sc" },
+//     { key: /\bstratus\b/, short: "St" },
+//     { key: /\bcumulus\b/, short: "Cu" },
+//     { key: /\bcumulonimbus\b/, short: "Cb" },
+//     { key: /,/, short: ", " },
+//     { key: /or/, short: "же " },
+//     { key: /and/, short: "жана " },
+//   ];
 
-  const matches = [];
+//   const matches = [];
 
-  types.forEach(t => {
-    let match;
-    if (t.key instanceof RegExp) {
-      match = t.key.exec(desc);
-      if (match) matches.push({ pos: match.index, short: t.short });
-    } else {
-      const index = desc.indexOf(t.key);
-      if (index !== -1) matches.push({ pos: index, short: t.short });
-    }
-  });
+//   types.forEach(t => {
+//     let match;
+//     if (t.key instanceof RegExp) {
+//       match = t.key.exec(desc);
+//       if (match) matches.push({ pos: match.index, short: t.short });
+//     } else {
+//       const index = desc.indexOf(t.key);
+//       if (index !== -1) matches.push({ pos: index, short: t.short });
+//     }
+//   });
 
-  matches.sort((a, b) => a.pos - b.pos);
+//   matches.sort((a, b) => a.pos - b.pos);
 
-  return matches.map(m => m.short).join('');
-}
+//   return matches.map(m => m.short).join('');
+// }
 
     function shortenWeather(longDesc) {
       if (!longDesc) return;
@@ -227,7 +227,7 @@ function shortenCloudType(longDesc) {
                           <td>{shortenWeather(values.present_weather?.description)}</td>
                           <td>{values.cloud_amount?.description.split('OKTA')[0]}</td>
                           <td>{values.height_of_base_of_cloud?values.height_of_base_of_cloud?.value+' м':null}</td>
-                          <td>{(values.cloud_type?.description)}</td>
+                          <td>{/*(values.cloud_type?.description)*/}</td>
                         </tr>
 
                         {currentGroup !== nextGroup && (
