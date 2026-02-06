@@ -12,7 +12,7 @@ function App() {
   const [lang, setLang] = useState(true)
 //base list station-----------------------------------------
     const STATIONS = new Map([
-    ['38353', { name: 'Бишкек', group: 'Чуй' }],
+    ['38353', { name: 'Бишкек', group: 'Чуй' }],//hello
     ['38228', { name: 'Жаңы-жер', group: 'Чуй' }],
     ['38224', { name: 'Кара-Балта', group: 'Чуй' }],
     ['36911', { name: 'Токмок', group: 'Чуй' }],
