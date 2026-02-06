@@ -6,27 +6,27 @@ table{
 td{
     text-wrap: nowrap;
     white-space: nowrap;
-}th{
-    font-size: 13px;
 }
 th, td{
-    border: 1px solid black !important;
-    text-align: center !important;
-    vertical-align: middle !important;
-    padding: 0px 1px !important;
+    border: 1px solid black;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0px 1px;
+}
+.weathertd{
+    text-align:start;
 }
 .header{
     display: flex;
     justify-content: space-around;
-    font-size: 13px;
     width: 100%;
     margin: 0%;
 }
 .boldBorder td {
-  border-bottom: 3px solid rgb(0, 0, 0) !important;
+  border-bottom: 3px solid rgb(0, 0, 0);
 }
 .main{
-    width: 794px;
+    width: 200mm;
     box-shadow: 5px 5px 30px 5px rgb(34, 34, 34);
     background-color: white;
 }

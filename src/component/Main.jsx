@@ -103,10 +103,8 @@ let Main = (props) => {
                 {props.hour==='03'||props.hour==='06'?<th>Мин темп</th>:null}
                 <th>{props.lang?'Жаан':'Осад'}</th>
                 <th>{props.lang?'Басым өзг':'Бар тнд'} </th>
-                {/*<th>Салышт ным</th>*/}
                 {props.hour==='03'?<th>{props.lang?'Кар':'Снег'}</th>:null}
-                <th>{props.lang?'Шамал багыт':'Напр ветра'}</th>
-                <th>{props.lang?'Шамал ылдам':'Скор ветра'}</th>
+                <th>{props.lang?'Шамал':'Ветер'}</th>
                 <th>{props.lang?'Көрүү алыст':'Гориз види'}</th>
                 <th>{props.lang?'Учур аба ырай':'Погода в срок'}</th>
                 <th>{props.lang?'Булут-тулук':'Облачн'}</th>
@@ -125,45 +123,46 @@ let Main = (props) => {
                   return (
                     <>
                       <tr key={stationId}>
-                          {/*Станция*/}
+                      {/*Станция*/}
                         <td><b>{STATIONS.get(stationId)?.name ?? stationId}</b></td>
-                          {/*Темп*/}
-                        <td>{values.air_temperature?values.air_temperature?.value+'°C':null}</td>
-                          {/*Макс темп*/}
+                      {/*Темп*/}
+                        <td>{values.air_temperature?Number(Math.round(values.air_temperature?.value)):null}</td>
+                      {/*Макс темп*/}
                         {props.hour==='15'||props.hour==='18'?
-                          <td>{values.maximum_temperature_at_height_and_over_period_specified?values.maximum_temperature_at_height_and_over_period_specified?.value+'°C':null}</td>
+                          <td>{values.maximum_temperature_at_height_and_over_period_specified?Number(Math.round(values.maximum_temperature_at_height_and_over_period_specified?.value)):null}</td>
                         :null}
-                        {/*Мин темп*/}
+                      {/*Мин темп*/}
                         {props.hour==='03'||props.hour==='06'?
-                          <td>{values.minimum_temperature_at_height_and_over_period_specified?values.minimum_temperature_at_height_and_over_period_specified?.value+'°C':null}</td>
+                          <td>{values.minimum_temperature_at_height_and_over_period_specified?Number(Math.round(values.minimum_temperature_at_height_and_over_period_specified?.value)):null}</td>
                         :null}
-                          {/*Жаан*/}
-                        <td>{values.total_precipitation_or_total_water_equivalent?Number((values.total_precipitation_or_total_water_equivalent?.value).toFixed(1))+' мм':null}</td>
-                          {/*Басым*/}
-                        <td>{values['3hour_pressure_change']?values['3hour_pressure_change']?.value+' hPa':null}</td>
-                          {/*Салышт ным*/}
-                        {/*<td>{values.relative_humidity?values.relative_humidity?.value+'%':null}</td>*/}
-                          {/*Кар*/}
-                        {props.hour==='03'?<td>{values.total_snow_depth?Number((values.total_snow_depth?.value)?.toFixed(2))+' м':null}</td>:null}
-                          {/*Шамал багыт*/}
-                        <td>{values.wind_direction?values.wind_direction?.value+'°':null}</td>
-                          {/*Шамал ылдам*/}
-                        <td>{values.wind_speed?Number((values.wind_speed?.value)?.toFixed(1))+' м/с':null}</td>
-                          {/*Көрүү алыст*/}
-                        <td>{values.horizontal_visibility?values.horizontal_visibility?.value/1000+' км':null}</td>
-                          {/*Учур аба ырайк*/}
-                        <td>{shortenWeather(values.present_weather?.description)}</td>
-                          {/*Булут-тулук*/}
-                        <td>{values.cloud_cover_total?values.cloud_cover_total.value+"%":null}</td>
-                          {/*Ылды чеги*/}
-                        <td>{values.height_of_base_of_cloud?values.height_of_base_of_cloud?.value+' м':null}</td>
-                          {/*Булут түрү*/}
+                      {/*Жаан*/}
+                        <td>{values.total_precipitation_or_total_water_equivalent?Number(Math.round((values.total_precipitation_or_total_water_equivalent?.value).toFixed(1))):null}</td>
+                      {/*Басым*/}
+                        <td>{values['3hour_pressure_change']?Number(Math.round(values['3hour_pressure_change']?.value)):null}</td>
+                      {/*Кар*/}
+                        {props.hour==='03'?
+                        <td>{values.total_snow_depth?Number(Math.round((values.total_snow_depth?.value)?.toFixed(2))):null}</td>
+                        :null}
+                      {/*Шамал*/}
+                        <td>
+                          {values.wind_direction?values.wind_direction?.value+"-":null}
+                          {values.wind_speed?Number((values.wind_speed?.value)?.toFixed(1)):null}
+                        </td>
+                      {/*Көрүү алыст*/}
+                        <td>{values.horizontal_visibility?Number(Math.round(values.horizontal_visibility?.value/1000)):null}</td>
+                      {/*Учур аба ырайк*/}
+                        <td className={classes.weathertd}>{values.present_weather?shortenWeather(values.present_weather?.description):null}</td>
+                      {/*Булут-тулук*/}
+                        <td>{values.cloud_cover_total?Number(Math.round(values.cloud_cover_total.value/10)):null}</td>
+                      {/*Ылды чеги*/}
+                        <td>{values.height_of_base_of_cloud?values.height_of_base_of_cloud?.value:null}</td>
+                      {/*Булут түрү*/}
                         <td>
                           {values.cloud_amount && values.cloud_amount?.description!=='0'?values.cloud_amount?.description.split(' ')[0]:null} {}
                           {values.cloud_type?values.cloud_type?.slice(0,3).map(c=>shortenCloudType(c.description)).join(' '):null}
                         </td>
                       </tr>
-                      {/*разделитель*/}
+                    {/*разделитель*/}
                       {currentGroup !== nextGroup && (
                         <tr className={classes.boldBorder}>
                           <td colSpan={13}></td>
