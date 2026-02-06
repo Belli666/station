@@ -1,29 +1,38 @@
 table{
-    border-collapse: collapse;
-    padding: 0;
+    border-collapse: collapse !important;
     width: 100%;
+    margin: 0%;
 }
 td{
     text-wrap: nowrap;
-    border: 1px solid black;
-    text-align: center;
-    vertical-align: middle; 
+    white-space: nowrap;
 }th{
     font-size: 13px;
-    border: 1px solid black;
-    text-align: center;
-    vertical-align: middle; 
+}
+th, td{
+    border: 1px solid black !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    padding: 0px 1px !important;
 }
 .header{
     display: flex;
     justify-content: space-around;
     font-size: 13px;
+    width: 100%;
+    margin: 0%;
 }
 .boldBorder td {
-  border-bottom: 3px solid black;
-  padding: 0;
+  border-bottom: 3px solid rgb(0, 0, 0) !important;
 }
 .main{
     width: 794px;
-    padding: 0;
+    box-shadow: 5px 5px 30px 5px rgb(34, 34, 34);
+    background-color: white;
+}
+@media print {
+    .main{
+        box-shadow: none;
+        width: 100%;
+    }
 }
