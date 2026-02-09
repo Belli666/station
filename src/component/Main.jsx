@@ -1,7 +1,6 @@
 import React, {useEffect, useRef } from "react";
 import classes from './Main.module.css';
 import Input from './UI/Input';
-
 let Main = (props) => {
   //data-----------------------------------------------------------------
   const stationList = props.station || [];
@@ -32,7 +31,6 @@ let Main = (props) => {
     });
     return acc;
   }, {});
-
 //cloud-------------------------------------------------------------
   function shortenCloudType(longDesc) {
     if (!longDesc) return '';
@@ -57,40 +55,121 @@ let Main = (props) => {
 //weather----------------------------------------------------------
   function shortenWeather(longDesc) {
     if (!longDesc) return;
-    const desc = longDesc.toLowerCase();
+    const desc = longDesc.trim().toLowerCase();
     const types = [
-      { key: "STATE OF SKY ON THE WHOLE UNCHANGED", short: props.lang?'Өзгөрсүз':'Неизменно' },
-      { key: "mist", short:'Туман'},
-      { key: "continuous fall of snowflakes", short: props.lang?'Кар жааш':'Снегопад' },
-      { key: "fog or ice fog, sky invisible", short: props.lang?'Суук туман':'Холодный туман' },
-      { key: "NO SIGNIFICANT PHENOMENON TO REPORT, PRESENT AND PAST WEATHER OMITTED", short: props.lang?'':'' },
-      { key: "RAIN SHOWER(S), SLIGHT", short: props.lang?'':'Слабый ливневый дождь' },
-      { key: "STATE OF SKY ON THE WHOLE UNCHANGED", short: props.lang?'':'без изменений' },
-      { key: "NO SIGNIFICANT PHENOMENON TO REPORT, PRESENT AND PAST WEATHER OMITTED", short: props.lang?'':'Без существенных явлений' },
-      { key: "THUNDERSTORM, BUT NO PRECIPITATION AT THE TIME OF OBSERVATION", short: props.lang?'':'Гроза без осадков' },
-      { key: "RAIN (NOT FREEZING)", short: props.lang?'':'Дождь не замерзающий' },
-      { key: "PRECIPITATION WITHIN SIGHT, NOT REACHING THE GROUND OR THE SURFACE OF THE SEA", short: props.lang?'':'' },
-      { key: "PRECIPITATION WITHIN SIGHT, NOT REACHING THE GROUND OR THE SURFACE OF THE SEA", short: props.lang?'':'Осадки не касаются поверхности' },
-      { key: "THUNDERSTORM, SLIGHT OR MODERATE, WITHOUT HAIL*, BUT WITH RAIN AND/OR SNOW AT TIME OF OBSERVATION", short: props.lang?'':'Слабая/умеренная гроза, без града, с дождём/снегом' },
-      { key: "CLOUD DEVELOPMENT NOT OBSERVED OR NOT OBSERVABLE", short: props.lang?'':'Развитие облаков не наблюдается или не наблюдаемо' },
-      { key: "SHOWER(S) OF RAIN", short: props.lang?'':'Ливень' },
-      { key: "SLIGHT OR MODERATE DUSTSTORM OR SANDSTORM", short: props.lang?'':'Слабая или умеренная пыльная/песчаная буря' },
-      { key: "", short: props.lang?'':'' },
-      { key: "", short: props.lang?'':'' },
-      { key: "", short: props.lang?'':'' },
-      { key: "", short: props.lang?'':'' },
-      { key: "", short: props.lang?'':'' },
+      { key: "THUNDERSTORM, SLIGHT OR MODERATE, WITHOUT HAIL*, BUT WITH RAIN AND/OR SNOW AT TIME OF OBSERVATION", 
+        short: props.lang?'Учурда күн-күрк жаан/кар  - 95':'Гроза сл в срок с дождь/снег - 95' },
+
+      { key: "THUNDERSTORM, BUT NO PRECIPITATION AT THE TIME OF OBSERVATION", 
+        short: props.lang?'Учурда күн-күрк жаансыз ':'Гроза в срок без ос' },
+
+      { key: "STATE OF SKY ON THE WHOLE UNCHANGED", 
+        short: props.lang?'Асм алмашсыз':'Небо неизм' },
+
+      { key: "SLIGHT OR MODERATE DUSTSTORM OR SANDSTORM", 
+        short: props.lang?'Буран кич':'Буря сл' },
+
+      { key: "SHOWER(S) OF RAIN", 
+        short: props.lang?'Нөшөр жаан':'Ливень' },
+
+      { key: "RAIN, NOT FREEZING, CONTINUOUS", 
+        short: props.lang?'Үзгсз тоңсуз жаан':'Непрер дождь не замер' },
+
+      { key: "RAIN SHOWER(S), SLIGHT", 
+        short: props.lang?'Кич нөшөр жаан - 80':'ливень сл - 80' },
+
+      { key: "RAIN (NOT FREEZING)", 
+        short: props.lang?'Тоңсуз жаан':'Дождь не замер' },
+
+      { key: "PRECIPITATION WITHIN SIGHT, REACHING THE GROUND OR THE SURFACE OF THE SEA, BUT DISTANT, I.E. ESTIMATED TO BE MORE THAN 5 KM FROM THE STATION", 
+        short: props.lang?'Ж-ч алыс':'Ос в/з - 15' },//
+
+      { key: "PRECIPITATION WITHIN SIGHT, NOT REACHING THE GROUND OR THE SURFACE OF THE SEA", 
+        short: props.lang?'Ж-ч жерге жетпей - 14':'Ос не дос земли - 14' },
+
+      { key: "NO SIGNIFICANT PHENOMENON TO REPORT, PRESENT AND PAST WEATHER OMITTED", 
+        short: props.lang?'Маани көр жок':'Знач явл нет' },
+
+      { key: "NO OBSERVATION, DATA NOT AVAILABLE, PRESENT AND PAST WEATHER OMITTED", 
+        short: props.lang?'Байкоо жок':'Нет набл' },
+
+      { key: "CLOUDS GENERALLY DISSOLVING OR BECOMING LESS DEVELOPED", 
+        short: props.lang?'Блт тароо - 1':'Обл расс - 1' },
+
+      { key: "CLOUD DEVELOPMENT NOT OBSERVED OR NOT OBSERVABLE", 
+        short: props.lang?'Блт өнүгпөс - 1':'Обл не разв - 1' },
+
+      { key: "VISIBILITY REDUCED BY SMOKE E.G. VELDT OR FOREST FIRES INDUSTRIAL SMOKE OR VOLCANIC ASHES", 
+        short: 'Туман - 4' },
+
+      { key: "THUNDERSTORM COMBINED WITH DUSTSTORM OR SANDSTORM AT TIME OF OBSERVATION", 
+        short: props.lang?'Учурда күн күрк буран - 98':'Гроза в срок с бурей - 98' },
+
+      { key: "THUNDERSTORM (WITH OR WITHOUT PRECIPITATION)", 
+        short: props.lang?'Күн күрк':'Гроза' },
+
+      { key: "RAIN SHOWER(S) MODERATE OR HEAVY", 
+        short: props.lang?'Нөшөр жаан орт/күч - 81':'Ливн ум/сил - 81' },
+
+      { key: "CLOUDS GENERALLY FORMING OR DEVELOPING", 
+        short: props.lang?'Блт өнүгүү - 3':'Обл разв - 3' },
+
+      { key: "ISOLATED STAR-LIKE SNOW CRYSTALS (WITH OR WITHOUT FOG", 
+        short: props.lang?'Жылдз кар крист':'Снеж крист как звезд' },
+        
+      { key: "SLIGHT OR MODERATE DRIFTING SNOW", 
+        short: props.lang?'Кар кич/орт':'Снег сл/ум' },
+
+      { key: "FOG OR ICE FOG, SKY INVISIBLE", 
+        short: props.lang?'Муз кою тум ':'Хол тум сплш' },
+
+      { key: "FOG, DEPOSITING RIME, SKY INVISIBLE", 
+        short: props.lang?'Аяз кою тум':'Измор тум сплш' },
+
+      { key: "MIST", 
+        short: props.lang?'Мунарык - 10':'Дымка - 10' },
+
+      { key: "CONTINUOUS FALL OF SNOWFLAKES", 
+        short: props.lang?'Токтбз кар':'Снег непрер' },
+
+      { key: "SNOW", short: props.lang?'Кар':'Снег' },
+
+      { key: "SNOW SHOWER(S), SLIGHT", 
+        short: props.lang?'Нөшөр кар - 85':'Ливн снег сл - 85' },
+
+      { key: "intermittent fall of snowflakes", 
+        short: props.lang?'Маал-маал кар':'Снег с перер' },
+
+      { key: "rain, not freezing, intermittent", 
+        short: props.lang?'маал-маал жаан':'Дождь с перер' },
+
+      { key: "drizzle, freezing, slight", 
+        short: props.lang?'Тоң кич майда жаан - 56':'Морось сл замер - 56' },
+
+      { key: "snow grains (with or without fog)", 
+        short: props.lang?'Майда кар - 77':'Снеж зёрна - 77' },
+
+      { key: "fog or ice fog, sky visible", 
+        short: props.lang?'Асм көр туман':'Туман небо вид' },
+
+      { key: "drizzle, not freezing, continuous", 
+        short: props.lang?'Майда жаан тотобз':'Морось непрер' },
+
+      { key: "snow shower(s), moderate or heavy", 
+        short: props.lang?'Нөшөр кар арт/күч - 86':'Ливн снег ум/сил - 86' },
+
+      { key: "shower(s) of snow, or of rain and snow", 
+        short: props.lang?'Нөшөр кар же карсыз':'Ливн снег или без' },
+
+      { key: "", 
+        short: props.lang?'':'' },
     ];
-    const foundTypes = types.filter(t => desc.includes(t.key)).map(t => t.short);
-    const type = foundTypes.length ? foundTypes.join("") : desc;
-    return `${type}`;
+    const found = types.find(
+      t => t.key.toLowerCase() == desc
+    );
+    //console.log(types.map(item => item.short));
+    return found ? found.short : desc;
   }
-  //scroll------------------------------------------------------------
-  const scrollRef = useRef(null);
-  useEffect(() => {
-    if (scrollRef.current)
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-  }, []);
   //HTML-----------------------------------------------------------------
   return (
       <div className={classes.main}>
@@ -134,7 +213,6 @@ let Main = (props) => {
                 ).map(([stationId, values], index, arr) => {
                   const currentGroup = STATIONS.get(stationId)?.group;
                   const nextGroup = arr[index + 1]?STATIONS.get(arr[index + 1][0])?.group:null;
-
                   return (
                     <>
                       <tr key={stationId}>
@@ -153,7 +231,7 @@ let Main = (props) => {
                       {/*Жаан*/}
                         <td>{values.total_precipitation_or_total_water_equivalent?Number(Math.round((values.total_precipitation_or_total_water_equivalent?.value).toFixed(1))):null}</td>
                       {/*Басым*/}
-                        <td>{values['3hour_pressure_change']?Number(Math.round(values['3hour_pressure_change']?.value)):null}</td>
+                        <td>{values['3hour_pressure_change']?values['3hour_pressure_change']?.value:null}</td>
                       {/*Кар*/}
                         {props.hour==='03'?
                         <td>{values.total_snow_depth?Number(Math.round((values.total_snow_depth?.value)?.toFixed(2))):null}</td>
@@ -166,7 +244,7 @@ let Main = (props) => {
                       {/*Көрүү алыст*/}
                         <td>{values.horizontal_visibility?Number(Math.round(values.horizontal_visibility?.value/1000)):null}</td>
                       {/*Учур аба ырайк*/}
-                        <td className={classes.weathertd}>{/*values.present_weather?shortenWeather(values.present_weather?.description):*/null}</td>
+                        <td className={classes.weathertd}>{values.present_weather?shortenWeather(values.present_weather?.description):null}</td>
                       {/*Булут-тулук*/}
                         <td>{values.cloud_cover_total?Number(Math.round(values.cloud_cover_total.value/10)):null}</td>
                       {/*Ылды чеги*/}

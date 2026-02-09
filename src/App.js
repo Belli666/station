@@ -112,6 +112,11 @@ function App() {
           setEmpty("Нет данных!")
         }
         console.log(merged);
+        const weatherOnly = merged.filter(item => 
+          item.name && item.name.toLowerCase().includes("present_weather")
+        );
+        console.log(weatherOnly);
+
         setLoad(false)
       })
       .catch(err => console.error(err));
