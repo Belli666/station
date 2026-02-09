@@ -157,7 +157,7 @@ function App() {
             </g>
           </svg>
         :null}
-        <Button id='lang' class="btn btn-outline-light" onClick={()=>setLang(!lang)} text={lang?'Кыр':'Рус'}/>
+        <Button id='lang' class="btn btn-outline-light" onClick={()=>setLang(!lang)} text={lang?'Рус':'Кыр'}/>
       </div>
       <Main
         lang={lang}

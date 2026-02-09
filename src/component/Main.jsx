@@ -63,7 +63,23 @@ let Main = (props) => {
       { key: "mist", short:'Туман'},
       { key: "continuous fall of snowflakes", short: props.lang?'Кар жааш':'Снегопад' },
       { key: "fog or ice fog, sky invisible", short: props.lang?'Суук туман':'Холодный туман' },
-      { key: "", short: "" },
+      { key: "NO SIGNIFICANT PHENOMENON TO REPORT, PRESENT AND PAST WEATHER OMITTED", short: props.lang?'':'' },
+      { key: "RAIN SHOWER(S), SLIGHT", short: props.lang?'':'Слабый ливневый дождь' },
+      { key: "STATE OF SKY ON THE WHOLE UNCHANGED", short: props.lang?'':'без изменений' },
+      { key: "NO SIGNIFICANT PHENOMENON TO REPORT, PRESENT AND PAST WEATHER OMITTED", short: props.lang?'':'Без существенных явлений' },
+      { key: "THUNDERSTORM, BUT NO PRECIPITATION AT THE TIME OF OBSERVATION", short: props.lang?'':'Гроза без осадков' },
+      { key: "RAIN (NOT FREEZING)", short: props.lang?'':'Дождь не замерзающий' },
+      { key: "PRECIPITATION WITHIN SIGHT, NOT REACHING THE GROUND OR THE SURFACE OF THE SEA", short: props.lang?'':'' },
+      { key: "PRECIPITATION WITHIN SIGHT, NOT REACHING THE GROUND OR THE SURFACE OF THE SEA", short: props.lang?'':'Осадки не касаются поверхности' },
+      { key: "THUNDERSTORM, SLIGHT OR MODERATE, WITHOUT HAIL*, BUT WITH RAIN AND/OR SNOW AT TIME OF OBSERVATION", short: props.lang?'':'Слабая/умеренная гроза, без града, с дождём/снегом' },
+      { key: "CLOUD DEVELOPMENT NOT OBSERVED OR NOT OBSERVABLE", short: props.lang?'':'Развитие облаков не наблюдается или не наблюдаемо' },
+      { key: "SHOWER(S) OF RAIN", short: props.lang?'':'Ливень' },
+      { key: "SLIGHT OR MODERATE DUSTSTORM OR SANDSTORM", short: props.lang?'':'Слабая или умеренная пыльная/песчаная буря' },
+      { key: "", short: props.lang?'':'' },
+      { key: "", short: props.lang?'':'' },
+      { key: "", short: props.lang?'':'' },
+      { key: "", short: props.lang?'':'' },
+      { key: "", short: props.lang?'':'' },
     ];
     const foundTypes = types.filter(t => desc.includes(t.key)).map(t => t.short);
     const type = foundTypes.length ? foundTypes.join("") : desc;
@@ -88,10 +104,9 @@ let Main = (props) => {
               <option value="15">15:00</option>
               <option value="18">18:00</option>
               <option value="21">21:00</option>
-            </select>{props.lang?',':'за'}
-            <Input value={props.date} onChange={(e) => props.dateChange(e.target.value)} type="date"/>{props.lang?'-жылдагы учур аба ырай.':'г.'}
-          </b>
-          <b>{props.lang?'Кабыл алды:':'Принял(а):'}<Input type='text'/></b>
+            </select>{props.lang?', ':'от'}
+            <Input className={classes.dateInput} value={props.date} onChange={(e) => props.dateChange(e.target.value)} type="date"/>{props.lang?'-жылдагы учур аба ырай.':'г.'}
+          </b><b>{props.lang?'Кабыл алды: ':'Принял(а): '}<Input className={classes.textInput} type='text'/></b>
         </header>
         <div className={classes.station}>
           <table >
@@ -105,8 +120,8 @@ let Main = (props) => {
                 <th>{props.lang?'Басым өзг':'Бар тнд'} </th>
                 {props.hour==='03'?<th>{props.lang?'Кар':'Снег'}</th>:null}
                 <th>{props.lang?'Шамал':'Ветер'}</th>
-                <th>{props.lang?'Көрүү алыст':'Гориз види'}</th>
-                <th>{props.lang?'Учур аба ырай':'Погода в срок'}</th>
+                <th>{props.lang?'МКА':'МДВ'}</th>
+                <th>{props.lang?'Өтк жн учур аба ырай':'Погода в срок и мжд'}</th>
                 <th>{props.lang?'Булут-тулук':'Облачн'}</th>
                 <th>{props.lang?'Ылды чеги':'Ниж грц'}</th>
                 <th>{props.lang?'Булут түрү':'Вид обл'}</th>
@@ -151,7 +166,7 @@ let Main = (props) => {
                       {/*Көрүү алыст*/}
                         <td>{values.horizontal_visibility?Number(Math.round(values.horizontal_visibility?.value/1000)):null}</td>
                       {/*Учур аба ырайк*/}
-                        <td className={classes.weathertd}>{values.present_weather?shortenWeather(values.present_weather?.description):null}</td>
+                        <td className={classes.weathertd}>{/*values.present_weather?shortenWeather(values.present_weather?.description):*/null}</td>
                       {/*Булут-тулук*/}
                         <td>{values.cloud_cover_total?Number(Math.round(values.cloud_cover_total.value/10)):null}</td>
                       {/*Ылды чеги*/}
@@ -165,7 +180,7 @@ let Main = (props) => {
                     {/*разделитель*/}
                       {currentGroup !== nextGroup && (
                         <tr className={classes.boldBorder}>
-                          <td colSpan={13}></td>
+                          <td colSpan={100}></td>
                         </tr>
                       )}
                     </>

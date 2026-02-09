@@ -37,13 +37,13 @@
   max-height: none !important;
 }
 .App{
+  font-family:Arial;
   margin: 0%;
   padding: 2%;
   box-sizing: border-box;
   flex-direction: row;
   width: 100%;
-  height: 120vh;
-  font-size: 11.75px;
+  height: 200vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -84,24 +84,6 @@ div, header, table{
     height: auto;
     padding: 0;
     background-image: none;
-  }input[type="date"]::-webkit-calendar-picker-indicator {
-  display: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  } select {
-    -webkit-appearance: none; /* Chrome, Safari, Edge */
-    -moz-appearance: none;    /* Firefox */
-    appearance: none;          /* стандарт */
-    background: transparent;   /* убираем фон стрелки */
-    padding-right: 0;
-    border: none;
-    font-size: inherit;
-    width: 31px;
-  }input{
-    border: none;
-    margin-right: -24px;
-    padding: 0 1px;
   }
 }
 

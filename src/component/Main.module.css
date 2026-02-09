@@ -1,38 +1,73 @@
+.main{
+    width: 21cm;
+    height: 29.7cm;
+    box-shadow: 5px 5px 30px 5px rgb(34, 34, 34);
+    background-color: white;
+    padding: 1cm 0.75cm 0.5cm 0.95cm;
+}
+.header{
+    font-size: 12pt;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0%;
+    text-wrap: nowrap;
+}.header select{
+    font-size: 16pt;
+}
 table{
     border-collapse: collapse !important;
     width: 100%;
     margin: 0%;
-}
-td{
+}th{
+    padding: 0 0.5px;
+    font-size: 11pt;
+}td{
+    font-size: 10pt;
     text-wrap: nowrap;
-    white-space: nowrap;
-}
-th, td{
-    border: 1px solid black;
+}th, td{
+    border: 0.5pt solid black;
     text-align: center;
-    vertical-align: middle;
-    padding: 0px 1px;
-}
-.weathertd{
+    margin: 0%;
+    height: 0.30cm;
+    line-height: 0.44cm;
+    padding: 0%;
+}.weathertd{
     text-align:start;
 }
-.header{
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    margin: 0%;
+.textInput{
+    width: 150px;
 }
 .boldBorder td {
   border-bottom: 3px solid rgb(0, 0, 0);
-}
-.main{
-    width: 200mm;
-    box-shadow: 5px 5px 30px 5px rgb(34, 34, 34);
-    background-color: white;
+  height: 0%;
 }
 @media print {
     .main{
+        position: fixed;
         box-shadow: none;
         width: 100%;
+        padding-top: 0%;
+    }.header select{
+        -webkit-appearance: none; /* Chrome, Safari, Edge */
+        -moz-appearance: none;    /* Firefox */
+        appearance: none;          /* стандарт */
+        background: transparent;   /* убираем фон стрелки */
+        padding-right: 0;
+        border: none;
+        font-size: inherit;
+        width: 40px;
+    }input{
+        background: none;
+        border: none;
+        padding: 0 1px;
+    }
+    .dateInput{
+        margin-right: -26px;
+    }.dateInput::-webkit-calendar-picker-indicator {
+        display: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
     }
 }
