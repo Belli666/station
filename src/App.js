@@ -7,7 +7,7 @@ function App() {
   const [hour, setHour] = useState();
   const [date, setDate] = useState();
   const [station, setStation] = useState([]);
-  const [empty, setEmpty] = useState();
+  const [empty, setEmpty] = useState(false);
   const [load, setLoad] = useState(false);
   const [lang, setLang] = useState(true)
 //base list station-----------------------------------------
@@ -77,9 +77,7 @@ function App() {
     if (!date || !hour) return;
     setEmpty();
     setLoad(true);
-
     const baseUrl = '/oapi/collections/urn:wmo:md:kg-kyrgyzhydromet:core.surface-based-observations.synop/items';
-
     const requests = [...STATIONS.keys()].map(stationId => {
       const url =
         `${baseUrl}?f=json` +
@@ -89,7 +87,6 @@ function App() {
         `&offset=0` +
         `&datetime=${date}T${hour}:00:00Z` +
         `&wigos_station_identifier=${stationId}`;
-
       return fetch(url)
         .then(res => res.ok ? res.json() : null)
         .catch(() => null);
@@ -108,27 +105,26 @@ function App() {
             }))
           );
         setStation(merged);
+
         if (!merged.length) {
-          setEmpty("Нет данных!")
-        }
-        console.log(merged);
+          setEmpty(true)
+        };
         const weatherOnly = merged.filter(item => 
           item.name && item.name.toLowerCase().includes("present_weather")
         );
+        console.log(merged);
         console.log(weatherOnly);
-
         setLoad(false)
       })
       .catch(err => console.error(err));
   }, [date, hour]);
-  
 //html-----------------------------------------------------
   return (
     <div className="App">
       <img className="logo-meteo" src='https://www.meteo.kg/logo-public.png'></img>
       <div className="controller">
         <Button id='print' class="btn btn-success" onClick={()=> window.print()} text='Печать'/>
-        <h4 className="empty">{empty}</h4>
+        <h4 className="empty">{empty?lang?"Маалымат жок!":"Нет данных!":null}</h4>
         {load?
           <svg xmlns="http://www.w3.org/2000/svg" height="200px" width="200px" viewBox="0 0 200 200" class="pencil">
             <defs>
@@ -162,7 +158,7 @@ function App() {
             </g>
           </svg>
         :null}
-        <Button id='lang' class="btn btn-outline-light" onClick={()=>setLang(!lang)} text={lang?'Рус':'Кыр'}/>
+        <Button class="btn btn-outline-light" onClick={()=>setLang(!lang)} text={lang?'Рус':'Кыр'}/>
       </div>
       <Main
         lang={lang}

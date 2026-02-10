@@ -60,19 +60,13 @@ div, header, table{
 }
 .controller{
     display: flex;
-    justify-content: baseline;
+    justify-content: space-between;
     position: relative;
     width: 200mm;
     padding: 10px;
 }.empty{
     color: white;
 }
-#lang{
-  position: absolute;
-  left: 90%;
-}
-
-
 @media print {
   .logo-meteo{
     display: none;
