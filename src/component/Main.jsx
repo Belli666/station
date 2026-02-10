@@ -164,8 +164,8 @@ let Main = (props) => {
       { key: "isolated star-like snow crystals (with or without fog)", 
         short: props.lang?'Жылдз кар крист':'Снеж крист как звезд' },
 
-      { key: "", 
-        short: props.lang?'':'' },
+      { key: "FOG OR ICE FOG", 
+        short: props.lang?'Туман муз же музсз':'Туман с хол или без' },
 
       { key: "", 
         short: props.lang?'':'' },
