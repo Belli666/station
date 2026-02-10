@@ -64,7 +64,7 @@ let Main = (props) => {
         short: props.lang?'Учурда күн-күрк жаансыз ':'Гроза в срок без ос' },
 
       { key: "STATE OF SKY ON THE WHOLE UNCHANGED", 
-        short: props.lang?'Асм алмашсыз':'Небо неизм' },
+        short: props.lang?'Асм өзгрсз':'Небо неизм' },
 
       { key: "SLIGHT OR MODERATE DUSTSTORM OR SANDSTORM", 
         short: props.lang?'Буран кич':'Буря сл' },
@@ -161,6 +161,30 @@ let Main = (props) => {
       { key: "shower(s) of snow, or of rain and snow", 
         short: props.lang?'Нөшөр кар же карсыз':'Ливн снег или без' },
 
+      { key: "isolated star-like snow crystals (with or without fog)", 
+        short: props.lang?'Жылдз кар крист':'Снеж крист как звезд' },
+
+      { key: "", 
+        short: props.lang?'':'' },
+
+      { key: "", 
+        short: props.lang?'':'' },
+
+      { key: "", 
+        short: props.lang?'':'' },
+
+      { key: "", 
+        short: props.lang?'':'' },
+
+      { key: "", 
+        short: props.lang?'':'' },
+
+      { key: "", 
+        short: props.lang?'':'' },
+
+      { key: "", 
+        short: props.lang?'':'' },
+
       { key: "", 
         short: props.lang?'':'' },
     ];
@@ -168,7 +192,7 @@ let Main = (props) => {
       t => t.key.toLowerCase() == desc
     );
     //console.log(types.map(item => item.short));
-    return found ? found.short : desc;
+    return found ? found.short : alert(desc);
   }
   //HTML-----------------------------------------------------------------
   return (
