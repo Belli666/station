@@ -167,8 +167,8 @@ let Main = (props) => {
       { key: "FOG OR ICE FOG", 
         short: props.lang?'Туман муз же музсз':'Туман с хол или без' },
 
-      { key: "", 
-        short: props.lang?'':'' },
+      { key: "slight or moderate blowing snow", 
+        short: props.lang?'Кар кич/орт':'Снег сл/ум' },
 
       { key: "", 
         short: props.lang?'':'' },
@@ -258,7 +258,7 @@ let Main = (props) => {
                         <td>{values['3hour_pressure_change']?values['3hour_pressure_change']?.value:null}</td>
                       {/*Кар*/}
                         {props.hour==='03'?
-                        <td>{values.total_snow_depth?Number(Math.round((values.total_snow_depth?.value)?.toFixed(2))):null}</td>
+                        <td>{values.total_snow_depth?Number(Math.round((values.total_snow_depth?.value)*100)):null}</td>
                         :null}
                       {/*Шамал*/}
                         <td>
